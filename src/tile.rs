@@ -1,4 +1,4 @@
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum Color {
     Red,
     Orange,
@@ -8,7 +8,7 @@ pub enum Color {
     Purple,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum Shape {
     Circle,
     Star,
@@ -18,7 +18,7 @@ pub enum Shape {
     Clover,
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Tile {
     pub color: Color,
     pub shape: Shape,
@@ -64,12 +64,10 @@ mod tests {
 
     #[test]
     fn all_tiles() {
-        let colors = Color::ALL;
-        let shapes = Shape::ALL;
         let mut tiles = Vec::with_capacity(36);
 
-        for c in colors {
-            for s in shapes {
+        for c in Color::ALL {
+            for s in Shape::ALL {
                 tiles.push(Tile::new(c, s))
             }
         }
