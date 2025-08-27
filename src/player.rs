@@ -4,10 +4,10 @@ use crate::tile::{Color, Shape, Tile};
 
 pub enum Dominant {
     Color(Color, u8),
-    Shape(Shape, u8)
+    Shape(Shape, u8),
 }
 
-#[derive(Default)]
+#[derive(Clone, Default, Eq, PartialEq)]
 pub struct Player {
     tiles: Vec<Tile>,
     score: u64,
@@ -16,7 +16,7 @@ pub struct Player {
 impl Dominant {
     pub fn count(&self) -> u8 {
         match self {
-            Dominant::Color(_, c) | Dominant::Shape(_, c) => *c
+            Dominant::Color(_, c) | Dominant::Shape(_, c) => *c,
         }
     }
 }
@@ -43,5 +43,9 @@ impl Player {
         }
 
         Dominant::Shape(*shape, *s_count)
+    }
+
+    pub fn insert_tiles(&mut self, tiles: &[Tile]) {
+        self.tiles.extend_from_slice(tiles);
     }
 }

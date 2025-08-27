@@ -7,7 +7,7 @@ pub struct Table {
 impl Table {
     pub fn new() -> Self {
         Table {
-            grid: [[None; 108]; 108]
+            grid: [[None; 108]; 108],
         }
     }
 

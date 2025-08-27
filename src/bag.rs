@@ -29,6 +29,10 @@ impl Bag {
 
         (0..n).map(|_| self.try_pick_one()).collect()
     }
+
+    pub fn insert(&mut self, tiles: &[Tile]) {
+        self.tiles.extend_from_slice(tiles);
+    }
 }
 
 #[cfg(test)]
